@@ -1,4 +1,21 @@
-/* REEL ENDING */
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* BODY */
+
+body{
+    background:#050505;
+    overflow:hidden;
+
+    font-family:'Inter',sans-serif;
+}
+
+/* REEL SECTION */
 
 .reel-ending{
     position:relative;
@@ -27,10 +44,31 @@
 
     object-fit:cover;
 
-    transform:scale(1.04);
+    transform:scale(1.06);
+
+    filter:
+    brightness(0.82)
+    contrast(1.05);
+
+    animation:
+    cinematicZoom 14s ease-in-out infinite alternate;
 }
 
-/* OVERLAY */
+/* CINEMATIC MOTION */
+
+@keyframes cinematicZoom{
+
+    from{
+        transform:scale(1.03);
+    }
+
+    to{
+        transform:scale(1.1);
+    }
+
+}
+
+/* DARK OVERLAY */
 
 .overlay{
     position:absolute;
@@ -40,9 +78,34 @@
     background:
     linear-gradient(
         to bottom,
-        rgba(0,0,0,0.45),
-        rgba(0,0,0,0.88)
+        rgba(0,0,0,0.18),
+        rgba(0,0,0,0.72),
+        rgba(0,0,0,0.94)
     );
+}
+
+/* GOLD ATMOSPHERE */
+
+.overlay::after{
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+    height:700px;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(201,169,125,0.08),
+        transparent 70%
+    );
+
+    top:50%;
+    left:50%;
+
+    transform:
+    translate(-50%,-50%);
 }
 
 /* CONTENT */
@@ -50,27 +113,63 @@
 .ending-content{
     position:relative;
 
-    z-index:5;
+    z-index:10;
 
     text-align:center;
 
     padding:0 7%;
+
+    max-width:1000px;
+
+    animation:
+    fadeUp 1.6s ease;
+}
+
+/* FADE */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+
+        transform:
+        translateY(40px);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+        translateY(0);
+    }
+
 }
 
 /* LOGO */
 
 .ending-logo{
-    width:82px;
-    height:82px;
+    width:92px;
+    height:92px;
 
     object-fit:cover;
 
     border-radius:50%;
 
-    margin-bottom:28px;
+    margin-bottom:34px;
 
     border:
     1px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+    0 0 40px rgba(0,0,0,0.35);
+
+    transition:0.5s ease;
+}
+
+/* HOVER */
+
+.ending-logo:hover{
+    transform:scale(1.05);
 }
 
 /* SMALL TEXT */
@@ -80,11 +179,13 @@
 
     color:#C9A97D;
 
-    letter-spacing:6px;
+    font-size:0.75rem;
 
-    font-size:0.78rem;
+    letter-spacing:8px;
 
-    margin-bottom:28px;
+    margin-bottom:34px;
+
+    text-transform:uppercase;
 }
 
 /* TITLE */
@@ -92,25 +193,38 @@
 .ending-content h1{
     font-family:'Cormorant Garamond',serif;
 
-    font-size:5.5rem;
+    font-size:6.5rem;
     font-weight:300;
 
-    line-height:0.95;
+    line-height:0.92;
 
     color:#F5F1E8;
 
-    margin-bottom:45px;
+    margin-bottom:42px;
+
+    text-shadow:
+    0 10px 30px rgba(0,0,0,0.35);
 }
 
 /* BUTTON */
 
 .ending-content a{
-    display:inline-block;
+    display:inline-flex;
 
-    padding:18px 40px;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px 46px;
 
     border:
     1px solid rgba(255,255,255,0.12);
+
+    background:
+    rgba(255,255,255,0.03);
+
+    backdrop-filter:blur(10px);
+
+    -webkit-backdrop-filter:blur(10px);
 
     color:#F5F1E8;
 
@@ -118,30 +232,73 @@
 
     letter-spacing:3px;
 
-    font-size:0.75rem;
+    font-size:0.74rem;
 
-    transition:0.5s ease;
+    transition:
+    background 0.5s ease,
+    border 0.5s ease,
+    transform 0.5s ease,
+    color 0.5s ease;
 }
 
-/* HOVER */
+/* BUTTON HOVER */
 
 .ending-content a:hover{
     background:#F5F1E8;
 
     color:#050505;
+
+    transform:
+    translateY(-4px);
+
+    border-color:#F5F1E8;
 }
 
 /* MOBILE */
 
-@media(max-width:600px){
+@media(max-width:900px){
 
     .ending-content h1{
-        font-size:3rem;
+        font-size:4.8rem;
+    }
+
+}
+
+/* MOBILE SMALL */
+
+@media(max-width:600px){
+
+    .ending-content{
+        padding:0 10%;
     }
 
     .ending-logo{
-        width:70px;
-        height:70px;
+        width:72px;
+        height:72px;
+
+        margin-bottom:28px;
+    }
+
+    .ending-content span{
+        font-size:0.68rem;
+
+        letter-spacing:5px;
+
+        margin-bottom:24px;
+    }
+
+    .ending-content h1{
+        font-size:3.2rem;
+
+        line-height:1;
+    }
+
+    .ending-content a{
+        padding:18px 34px;
+
+        font-size:0.68rem;
+
+        letter-spacing:2px;
     }
 
     }
